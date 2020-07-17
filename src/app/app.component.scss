@@ -1,0 +1,40 @@
+.container {
+  position: relative;
+  margin-top: 80px;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  z-index: 111;
+  background: #f3f9f4;
+  color: #3daea3;
+}
+
+div h2 {
+  cursor: pointer;
+}
+
+mat-icon span {
+  cursor: pointer;
+}
+
+.logo {
+  background-attachment: fixed;
+  width: 100px;
+  height: 100px;
+  // background-repeat: no-repeat;
+}
+
+.globo {
+  background-attachment: fixed;
+  width: 70px;
+  height: 70px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,88 @@
+<div class="card-container">
+  <div fxLayout="column" fxFlex="100">
+    <div fxLayout="row">
+      <mat-card class="card-pedido">
+        <mat-card-title>
+          Dados do pedido > #{{ id }}
+        </mat-card-title>
+      </mat-card>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <mat-card class="card">
+        <mat-card-title class="titulo" fxLayoutAlign="center">
+          Dados do cliente
+        </mat-card-title><br>
+        <mat-card-content>
+          <h2> {{ cliente['name'] }} </h2>
+          <h3> {{ cliente['phones'][0] }} / {{ cliente['phones'][1] }} </h3>
+        </mat-card-content>
+        <div fxLayoutAlign="center end">
+          <button mat-raised-button style="width: 180px; heigth: 42px">Reenviar email</button>
+        </div>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-title class="titulo" fxLayoutAlign="center">
+          Endereço de entrega
+        </mat-card-title><br>
+        <mat-card-content>
+          <h2> {{ cliente['address']['address'] }} </h2>
+          <h3> {{ cliente['address']['city'] }} - {{ cliente['address']['uf'] }} </h3>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-title class="titulo" fxLayoutAlign="center">
+          Valor total
+        </mat-card-title>
+        <br><br>
+        <mat-card-content fxLayoutAlign="center">
+          <h2> R$ {{ order['subtotal'] }} </h2>
+        </mat-card-content><br>
+        <div fxLayoutAlign="center end">
+          <button mat-raised-button style="width: 180px; heigth: 42px">Detalhar valor</button>
+        </div>
+      </mat-card>
+      <mat-card class="card">
+        <mat-card-title class="titulo" fxLayoutAlign="center">
+          Status do pedido
+        </mat-card-title><br>
+        <div fxLayoutAlign="center">
+          <h2> {{ order['statusGeneral'] }} </h2>
+        </div>
+      </mat-card>
+    </div>
+    <div class="card-produtos" fxLayout="column">
+      <div cdkDropListGroup fxLayout="row" fxFlex="100">
+        <div fxFlex="50" fxLayoutAlign="center">
+          <div class="example-container">
+            <h2 class="titulo-pedidos">Itens em estoque</h2>
+            <div cdkDropList [cdkDropListData]="estoque" class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let item of estoque" cdkDrag>{{item['name']}} - R$ {{item['price']}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="center">
+          <div class="example-container">
+            <h2 class="titulo-pedidos">Itens para solicitar</h2>
+            <div cdkDropList [cdkDropListData]="itemSolicitar" class="example-list" (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let item of itemSolicitar" cdkDrag>{{item['name']}} - R$
+                {{item['price']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
+        <button mat-raised-button class="botão-entrega" (click)="enviaPedido()">Enviar pedido para o atacadista</button>
+      </div>
+      <br>
+    </div>
+    <br>
+    <div class="card-entrega" fxLayout="column" fxLayoutAlign="center center">
+      <h2 style="color: #ffc257;">Fluxo de entrega</h2>
+      <img src="assets/images/fluxo.png">
+    </div>
+    <br><br>
+  </div>
+</div>

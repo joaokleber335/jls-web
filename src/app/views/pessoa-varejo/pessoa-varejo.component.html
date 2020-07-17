@@ -1,0 +1,76 @@
+<div class="card-container">
+  <div fxLayout="column">
+    <div fxLayout="row" fxFlex="100">
+      <mat-card class="card-perfil">
+        <div fxLayout="row" fxFlex>
+          <img mat-card-image [src]="varejista['userLogged']['avatar']">
+        </div>
+        <mat-card-header fxLayout="column" fxLayoutAlign="center start" fxFlex="90">
+          <mat-card-title>
+            <h2 class="margin-block-end"> {{ varejista['userLogged']['name'] }} </h2>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <h3 class="margin-block-end-start"> {{ varejista['fantasy'] }} </h3>
+          </mat-card-subtitle>
+          <mat-card-subtitle class="margin-block-end">
+            <h3 class="margin-block-end-start"> {{ varejista['userLogged']['email'] }} </h3>
+          </mat-card-subtitle>
+          <mat-card-content fxLayout="row" fxLayoutGap="10px" style="margin-left: 16px">
+            <span> {{ varejista['phones'][0] }} / {{ varejista['phones'][1] }}</span>
+          </mat-card-content>
+        </mat-card-header>
+      </mat-card>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" style="margin: 0 45px;">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex="50">
+          <h1 class="titulo-pedido">Pedidos</h1>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end" fxFlex="50">
+          <h2 class="titulo-status">status</h2>
+        </div>
+      </div>
+      <mat-card class="card-pedidos" fxLayout="column" fxFlex="100">
+        <div fxLayout="column" *ngFor="let pedido of pedidos">
+          <div fxLayout="row" fxLayoutGap="10px" fxFlex="100" style="margin-bottom: 10px;">
+            <div fxLayout="row" fxFlex="92" (click)="getPedido(pedido)">
+              <mat-card class="pedido">
+                <div class="img">
+                  <img mat-card-image
+                    [src]="pedido['avatar']">
+                </div>
+                <h3 class="title-pedido"> {{ pedido['order'] }} </h3>
+                <div>
+                  <h4 class="data"> {{ pedido['date'] | date : 'dd/mm/yyyy' }} </h4>
+                  <h4 class="hora"> {{ pedido['date'] | date : 'hh:mm:ss' }} </h4>
+                </div>
+              </mat-card>
+            </div>
+            <div fxFlex="4">
+              <mat-card class="pedido" *ngIf="pedido['status'] === 'ENTREGUE'" matTooltip="Pedido entregue">
+                <mat-icon>
+                  <span class="material-icons">check</span>
+                </mat-icon>
+              </mat-card>
+              <mat-card class="pedido" *ngIf="pedido['status'] === 'A CAMINHO'" matTooltip="Pedido a caminho">
+                <mat-icon>
+                  <span class="material-icons">local_shipping</span>
+                </mat-icon>
+              </mat-card>
+              <mat-card class="pedido" *ngIf="pedido['status'] === 'PENDENTE'" matTooltip="Pedido pendente">
+                <mat-icon>
+                  <span class="material-icons">timer</span>
+                </mat-icon>
+              </mat-card>
+              <mat-card class="pedido" *ngIf="pedido['status'] === 'CANCELADO'" matTooltip="Pedido cancelado">
+                <mat-icon>
+                  <span class="material-icons">cancel</span>
+                </mat-icon>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

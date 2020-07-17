@@ -1,0 +1,23 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html,
+body {
+    height: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.card-pedidos {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 30px !important;
+  background-color: rgb(235, 232, 232);
+}
+
+.titulo-pedidos {
+  margin-block-end: 0;
+  color: #ffc257;
+}
